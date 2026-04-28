@@ -30,6 +30,7 @@ return [
     */
 
     'component_namespaces' => [
+        'views' => resource_path('views'),
         'layouts' => resource_path('views/layouts'),
         'pages' => resource_path('views/pages'),
     ],
