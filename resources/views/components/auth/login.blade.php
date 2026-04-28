@@ -17,8 +17,9 @@ new class extends Component {
 
     </div>
 
-    <div>
-        <div>
+    <div
+        class="w-full max-w-sm px-8 py-6 bg-white rounded-xl shadow-lg border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700">
+        <div class="space-y-4 flex flex-col items-center justify-center">
             {{-- Login error display --}}
             @if ($errors->any())
                 <x-alert title="Authentication failed" color="red" light icon="x-circle" class="w-full">
@@ -52,10 +53,33 @@ new class extends Component {
                 </svg>
                 Sign in with Google
             </x-button>
-
             <p class="text-xs text-center text-zinc-400">
                 Restricted to <span class="font-mono text-zinc-600 dark:text-zinc-300">@cvsu.edu.ph</span> accounts.
             </p>
         </div>
     </div>
+
+    @if (app()->isLocal())
+        <div
+            class=" mt-4 w-full max-w-sm px-8 py-6 bg-white rounded-xl shadow-lg border border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700">
+            <div class="space-y-4 flex flex-col items-center justify-center">
+                <h1 class="text-sm font-medium">Local Environment Login</h1>
+                <div class="flex flex-col gap-1 w-full">
+                    <form wire:submit="emailPasswordLogin">
+                        <div class="mt-1 w-full">
+                            <x-input label="Email: " type="email" id="email" wire:model="email"></x-input>
+                        </div>
+                        <div class="mt-1 w-full">
+                            <x-input label="Password" type="password" id="password" wire:model="password"></x-input>
+                        </div>
+
+                        <div class="mt-1 w-full">
+                            <x-button type="submit" sm class="w-full mt-2">Login</x-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
+
 </x-layouts.guests>
